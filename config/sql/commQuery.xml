@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query>
+    <selectPlaceCode>
+		SELECT * FROM WORK_PLACE_CODE_TBL #addWhere ORDER BY WORK_PLACE_CODE #addPaging ;
+	</selectPlaceCode>
+	<selectPlaceCodeTotal>
+		SELECT COUNT(*) AS TOTAL_SIZE, max(WORK_PLACE_CODE) as LAST_CODE FROM WORK_PLACE_CODE_TBL;
+	</selectPlaceCodeTotal>
+	<selectPartCode>
+		SELECT * FROM WORK_PART_CODE_TBL #addWhere ORDER BY WORK_PART_CODE #addPaging ;
+	</selectPartCode>
+	<selectPartCodeTotal>
+		SELECT COUNT(*) AS TOTAL_SIZE, max(WORK_PART_CODE) as LAST_CODE FROM WORK_PART_CODE_TBL;
+	</selectPartCodeTotal>
+    <selectComplexCode>
+		SELECT * FROM WORK_COMPLEX_CODE_TBL #addWhere ORDER BY WORK_COMPLEX_CODE #addPaging ;
+	</selectComplexCode>
+	<selectComplexCodeTotal>
+		SELECT COUNT(*) AS TOTAL_SIZE, max(WORK_COMPLEX_CODE) as LAST_CODE FROM WORK_COMPLEX_CODE_TBL;
+	</selectComplexCodeTotal>
+    <selectLineCode>
+		SELECT * FROM WORK_LINE_CODE_TBL #addWhere ORDER BY WORK_LINE_CODE #addPaging ;
+	</selectLineCode>
+	<selectLineCodeTotal>
+		SELECT COUNT(*) AS TOTAL_SIZE, max(WORK_LINE_CODE) as LAST_CODE FROM WORK_LINE_CODE_TBL;
+	</selectLineCodeTotal>
+	<selectEqpScrCode>
+		SELECT EQP_SN FROM EQP_SCR_MGR_TBL #addWhere ORDER BY SCR_CODE #addPaging ;
+	</selectEqpScrCode>
+	<selectTeamCode>
+		select * from USER_TEAM_CODE_TBL;
+	</selectTeamCode>
+	<selectTeamCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE from USER_TEAM_CODE_TBL;
+	</selectTeamCodeTotal>
+	<selectGroupCode>
+		select * from USER_GROUP_CODE_TBL;
+	</selectGroupCode>
+	<selectGroupCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE from USER_GROUP_CODE_TBL;
+	</selectGroupCodeTotal>
+	<selectPositionCode>
+		select * from USER_POSITION_CODE_TBL #addWhere ORDER BY POSITION_CODE desc #addPaging ;
+	</selectPositionCode>
+	<selectPositionCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE from USER_POSITION_CODE_TBL;
+	</selectPositionCodeTotal>
+	<selectDutyCode>
+		select * from USER_DUTY_CODE_TBL #addWhere ORDER BY DUTY_CODE #addPaging ;
+	</selectDutyCode>
+	<selectDutyCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE from USER_DUTY_CODE_TBL;
+	</selectDutyCodeTotal>
+	<selectSiteCode>
+		select * from WORK_SITE_CODE_TBL #addWhere ORDER BY WORK_SITE_CODE #addPaging ;
+	</selectSiteCode>
+	<selectSiteCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(WORK_SITE_CODE) as LAST_CODE from WORK_SITE_CODE_TBL;
+	</selectSiteCodeTotal>
+	<selectFloorCode>
+		select * from WORK_FLOOR_CODE_TBL #addWhere ORDER BY WORK_FLOOR_CODE #addPaging ;
+	</selectFloorCode>
+	<selectFloorCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(WORK_FLOOR_CODE) as LAST_CODE from WORK_FLOOR_CODE_TBL;
+	</selectFloorCodeTotal>
+	<selectBayCode>
+		select * from WORK_BAY_CODE_TBL #addWhere ORDER BY WORK_BAY_CODE #addPaging ;
+	</selectBayCode>
+	<selectBayCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(WORK_BAY_CODE) as LAST_CODE from WORK_BAY_CODE_TBL;
+	</selectBayCodeTotal>
+	<selectEmsCode>
+		select * from EQP_LINE_EMS_CODE_TBL #addWhere ORDER BY WORK_LINE_EMS_CODE #addPaging ;
+	</selectEmsCode>
+	<selectEmsCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(WORK_LINE_EMS_CODE) as LAST_CODE from EQP_LINE_EMS_CODE_TBL;
+	</selectEmsCodeTotal>
+	<selectProcessCode>
+		select * from EQP_PROCESS_CODE_TBL #addWhere ORDER BY WORK_PROCESS_CODE #addPaging ;
+	</selectProcessCode>
+	<selectProcessCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(WORK_PROCESS_CODE) as LAST_CODE from EQP_PROCESS_CODE_TBL;
+	</selectProcessCodeTotal>
+	<selectSubProcessCode>
+		select * from EQP_SUB_PROC_CODE_TBL #addWhere ORDER BY WORK_SUB_PROCESS_CODE #addPaging ;
+	</selectSubProcessCode>
+	<selectSubProcessCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(WORK_SUB_PROCESS_CODE) as LAST_CODE from EQP_SUB_PROC_CODE_TBL;
+	</selectSubProcessCodeTotal>
+	<selectScrCode>
+		select * from EQP_SCR_CODE_TBL #addWhere ORDER BY SCR_CODE #addPaging ;
+	</selectScrCode>
+	<selectScrCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(SCR_CODE) as LAST_CODE from EQP_SCR_CODE_TBL;
+	</selectScrCodeTotal>
+	<selectScrModelCode>
+		select * from EQP_SCR_MODEL_CODE_TBL #addWhere ORDER BY SCR_MODEL_CODE #addPaging ;
+	</selectScrModelCode>
+	<selectScrModelCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(SCR_MODEL_CODE) as LAST_CODE from EQP_SCR_MODEL_CODE_TBL;
+	</selectScrModelCodeTotal>
+	<selectEqpType1Code>
+		select * from EQP_TYPE1_CODE_TBL #addWhere ORDER BY EQP_TYPE_CODE #addPaging ;
+	</selectEqpType1Code>
+	<selectEqpType1CodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(EQP_TYPE_CODE) as LAST_CODE from EQP_TYPE1_CODE_TBL;
+	</selectEqpType1CodeTotal>
+	<selectEqpType2Code>
+		select * from EQP_TYPE2_CODE_TBL #addWhere ORDER BY EQP_TYPE2_CODE #addPaging ;
+	</selectEqpType2Code>
+	<selectEqpType2CodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(EQP_TYPE2_CODE) as LAST_CODE from EQP_TYPE2_CODE_TBL;
+	</selectEqpType2CodeTotal>
+	<selectGasCode>
+		select * from EQP_GAS_INFO_TBL #addWhere ORDER BY GAS_CODE #addPaging ;
+	</selectGasCode>
+	<selectGasCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(GAS_CODE) as LAST_CODE from EQP_GAS_INFO_TBL;
+	</selectGasCodeTotal>
+	<selectExhaustCode>
+		select * from EQP_EXHAUST_CODE_TBL #addWhere ORDER BY EXHAUST_CODE #addPaging ;
+	</selectExhaustCode>
+	<selectExhaustCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(EXHAUST_CODE) as LAST_CODE from EQP_EXHAUST_CODE_TBL;
+	</selectExhaustCodeTotal>
+	<selectWasteCode>
+		select * from EQP_WASTE_INFO_TBL #addWhere ORDER BY WASTE_CODE #addPaging ;
+	</selectWasteCode>
+	<selectWasteCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(WASTE_CODE) as LAST_CODE from EQP_WASTE_INFO_TBL;
+	</selectWasteCodeTotal>
+	<selectMainMakerCode>
+		select * from EQP_MAIN_MAKER_CODE_TBL #addWhere ORDER BY MAIN_EQP_CODE #addPaging ;
+	</selectMainMakerCode>
+	<selectMainMakerCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(MAIN_EQP_CODE) as LAST_CODE from EQP_MAIN_MAKER_CODE_TBL;
+	</selectMainMakerCodeTotal>
+	<selectMainModelCode>
+		select * from EQP_MAIN_MODEL_CODE_TBL #addWhere ORDER BY MAIN_EQP_MODEL_CODE #addPaging ;
+	</selectMainModelCode>
+	<selectMainModelCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(MAIN_EQP_MODEL_CODE) as LAST_CODE from EQP_MAIN_MODEL_CODE_TBL;
+	</selectMainModelCodeTotal>
+	<selectScrMakerCode>
+		select * from EQP_SCR_MAKER_CODE_TBL #addWhere ORDER BY SCR_MAKER_CODE #addPaging ;
+	</selectScrMakerCode>
+	<selectScrMakerCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(SCR_MAKER_CODE) as LAST_CODE from EQP_SCR_MAKER_CODE_TBL;
+	</selectScrMakerCodeTotal>
+	<selectMgrMakerCode>
+		select * from EQP_MGR_MAKER_CODE_TBL #addWhere ORDER BY MGR_MAKER_CODE #addPaging ;
+	</selectMgrMakerCode>
+	<selectMgrMakerCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(MGR_MAKER_CODE) as LAST_CODE from EQP_MGR_MAKER_CODE_TBL;
+	</selectMgrMakerCodeTotal>
+	<selectChamberCode>
+		select * from EQP_CHAMBER_CODE_TBL #addWhere ORDER BY CHAMBER_CODE #addPaging ;
+	</selectChamberCode>
+	<selectChamberCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(CHAMBER_CODE) as LAST_CODE from EQP_CHAMBER_CODE_TBL;
+	</selectChamberCodeTotal>
+	<selectViolationCode>
+		select * from ENV_VIOLATION_CODE_TBL #addWhere ORDER BY VIOLATION_CODE #addPaging ;
+	</selectViolationCode>
+	<selectViolationCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(VIOLATION_CODE) as LAST_CODE from ENV_VIOLATION_CODE_TBL;
+	</selectViolationCodeTotal>
+	<selectAccidentCode>
+		select * from ENV_ACCIDENT_CODE_TBL #addWhere ORDER BY ACCIDENT_CODE #addPaging ;
+	</selectAccidentCode>
+	<selectAccidentCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(ACCIDENT_CODE) as LAST_CODE from ENV_ACCIDENT_CODE_TBL;
+	</selectAccidentCodeTotal>
+	<selectExposeCode>
+		select * from ENV_EXPOSE_CODE_TBL #addWhere ORDER BY EXPOSE_CODE #addPaging ;
+	</selectExposeCode>
+	<selectExposeCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(EXPOSE_CODE) as LAST_CODE from ENV_EXPOSE_CODE_TBL;
+	</selectExposeCodeTotal>
+	<selectAccidentTypeCode>
+		select * from ENV_ACCIDENT_TYPE_CODE_TBL #addWhere ORDER BY ACCIDENT_TYPE_CODE #addPaging ;
+	</selectAccidentTypeCode>
+	<selectAccidentTypeCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(ACCIDENT_TYPE_CODE) as LAST_CODE from ENV_ACCIDENT_TYPE_CODE_TBL;
+	</selectAccidentTypeCodeTotal>
+	<selectIrrationCode>
+		select * from ENV_IRRATION_CODE_TBL #addWhere ORDER BY IRRATION_CODE #addPaging ;
+	</selectIrrationCode>
+	<selectIrrationCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(IRRATION_CODE) as LAST_CODE from ENV_IRRATION_CODE_TBL;
+	</selectIrrationCodeTotal>
+	<selectIrrationAccidentCode>
+		select * from ENV_IRRATION_WITH_ACCIDENT_CODE_TBL #addWhere ORDER BY WITH_ACCIDENT_CODE #addPaging ;
+	</selectIrrationAccidentCode>
+	<selectIrrationAccidentCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(WITH_ACCIDENT_CODE) as LAST_CODE from ENV_IRRATION_WITH_ACCIDENT_CODE_TBL;
+	</selectIrrationAccidentCodeTotal>
+	<selectAlramCode>
+		select * from EQP_ALARM_CODE_TBL #addWhere ORDER BY ALARM_CODE #addPaging ;
+	</selectAlramCode>
+	<selectAlramCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(ALARM_CODE) as LAST_CODE from EQP_ALARM_CODE_TBL;
+	</selectAlramCodeTotal>
+	<selectBasicCode>
+		SELECT * FROM BASE_CODE_TBL;
+	</selectBasicCode>
+	<selectFabTypeCode>
+		SELECT * FROM work_fab_type_code_tbl;
+	</selectFabTypeCode>
+	<selectSubProcessPcsCode>
+		SELECT * FROM EQP_SUB_PROC_PCS_CODE_TBL;
+	</selectSubProcessPcsCode>
+	<selectScrChamberCode>
+		SELECT * FROM SCR_CHAMBER_CODE_TBL;
+	</selectScrChamberCode>
+	<selectScrInlet1Code>
+		SELECT * FROM SCR_CHAMBER_INLET1_CODE_TBL;
+	</selectScrInlet1Code>
+	<selectScrInlet2Code>
+		SELECT * FROM SCR_CHAMBER_INLET2_CODE_TBL;
+	</selectScrInlet2Code>
+	<selecOtItemCode>
+		select * from ot_item_code_tbl #addWhere ORDER BY OT_ITEM_CODE #addPaging ;
+	</selecOtItemCode>
+	<selecOtItemCodeTotal>
+		select COUNT(*) AS TOTAL_SIZE, max(OT_ITEM_CODE) as LAST_CODE from ot_item_code_tbl;
+	</selecOtItemCodeTotal>
+</query>

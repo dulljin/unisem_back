@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query>
+	<selectLogin>
+		SELECT user_id, user_pwd, user_name, user_team_code, user_group_code, user_position_code, user_tokenid FROM user_info_mgr_tbl WHERE user_id = @userId AND user_resign_status = 1;
+	</selectLogin>
+	<selectBoardList>
+	  SELECT idx, title, reg_time, reg_id, reg_nm, file_yn,
+	  		(SELECT TOP(1) idx from board_file WHERE a.idx = ref_idx ORDER BY idx DESC) AS file_idx
+	  	FROM board_main a WHERE board_no = @boardNo ORDER BY idx desc
+	  	OFFSET (@pageNo-1)*@pageSize ROWS FETCH NEXT @pageSize ROWS ONLY;
+	</selectBoardList>
+	<selectBoardDetail>
+		SELECT * FROM board_main WHERE idx = @idx;
+	</selectBoardDetail>
+	<selectReply>
+		SELECT * FROM board_reply WHERE ref_idx = @refIdx ORDER BY depth, append_idx, idx;
+	</selectReply>
+	<selectFiles>
+		SELECT * FROM board_file WHERE ref_idx = @refIdx order by mod_time desc;
+	</selectFiles>
+	<selectBoardTotal>
+		SELECT COUNT(*) AS TOTAL_SIZE FROM board_main WHERE board_no = @boardNo;
+	</selectBoardTotal>
+	<selectBoardFile>
+		SELECT * FROM board_file WHERE idx = @idx;
+	</selectBoardFile>
+	<deleteBoardFile>
+		DELETE FROM board_file WHERE idx=@idx;
+	</deleteBoardFile>
+	<selectBoardInfo>
+		SELECT BOARD_NO, BOARD_NAME, ABLE_FILE, ABLE_REPLY FROM board_info WHERE board_no=@boardNo;
+	</selectBoardInfo>
+	<selectUserConfirm>
+		SELECT idx, user_id, user_req_confirm, user_confirm_status, user_confirm_time, user_name FROM VIEW_USER_CONFIRM WHERE user_confirm_status = 1 ORDER BY idx desc
+		OFFSET (@pageNo-1)*@pageSize ROWS FETCH NEXT @pageSize ROWS ONLY;
+	</selectUserConfirm>
+	<selectUserConfirmTotal>
+		SELECT COUNT(*) AS TOTAL_SIZE FROM VIEW_USER_CONFIRM WHERE user_confirm_status = 1;
+	</selectUserConfirmTotal>
+	<selectUserInfo>
+		SELECT * FROM user_info_mgr_tbl WHERE user_id = @userId;
+	</selectUserInfo>
+	<selectWorkSchedule>
+		SELECT * FROM USER_WORKING_PLAN_MGR_TBL WHERE user_id = @userId AND WORKING_PLAN_CONFIRM_STATUS = 2 AND del_flag = 0
+			AND (working_start_date #gt= CONVERT(DATE, @startDate) OR working_end_date >= CONVERT(DATE, @startDate))
+			AND working_start_date #lt CONVERT(DATE, @endDate) ORDER BY WORKING_START_DATE asc;
+	</selectWorkSchedule>
+	<selectUserCommuteHist>
+		SELECT *, concat(current_year, '-', replicate('0', 2-LEN(current_month)), current_month, '-', replicate('0', 2-LEN(current_day)), current_day) AS COMMUTE_DAY
+		FROM view_user_commute_history_list WHERE current_year=@year #addWhere ORDER BY user_name ASC
+		#addPaging ;
+	</selectUserCommuteHist>
+	<selectUserCommuteHistTotal>
+		SELECT COUNT(*) AS TOTAL_SIZE FROM view_user_commute_history_list WHERE current_year=@year #addWhere;
+	</selectUserCommuteHistTotal>
+	<selectWorkScheduleConfirm>
+		SELECT * FROM VIEW_WORKING_PLAN_MGR_LIST WHERE working_plan_confirm_status in (0, 1) AND year(WORKING_START_DATE) = @year #addWhere order by idx desc
+		OFFSET (@pageNo-1)*@pageSize ROWS FETCH NEXT @pageSize ROWS ONLY;
+	</selectWorkScheduleConfirm>
+	<selectWorkScheduleConfirmTotal>
+		SELECT count(*) as TOTAL_SIZE FROM VIEW_WORKING_PLAN_MGR_LIST WHERE working_plan_confirm_status in (0, 1) AND year(WORKING_START_DATE) = @year #addWhere
+	</selectWorkScheduleConfirmTotal>
+	<selectEventCheckHist>
+		SELECT * FROM view_event_check_summary WHERE year(EVENT_CHECK_DAY) = @year #addWhere ORDER BY idx desc;
+	</selectEventCheckHist>
+	<selectCheckStatusLine>
+		SELECT * FROM VIEW_EQP_CHECK_REPORT_LINE WHERE check_type=@mode AND DATEDIFF(DD, @tDate, check_date) = 0 AND work_place_code=@placeCd #addWhere ORDER BY check_date DESC 
+		OFFSET (@pageNo-1)*@pageSize ROWS FETCH NEXT @pageSize ROWS ONLY;
+	</selectCheckStatusLine>
+	<selectCheckStatusLineTotal>
+		SELECT COUNT(*) AS TOTAL_SIZE FROM VIEW_EQP_CHECK_REPORT_LINE WHERE check_type=@mode AND DATEDIFF(DD, @tDate, check_date) = 0 AND work_place_code=@placeCd #addWhere;
+	</selectCheckStatusLineTotal>
+	<selectMissCheckList>
+		SELECT EQP_SN, SCR_EQP_ID FROM view_check_eqp_miss_list WHERE CHECK_TYPE=@mode AND DATEDIFF(DD, @tDate, check_date) = 0 AND work_line_code=@lineCd;
+	</selectMissCheckList>
+	<selectEqpCheckHist>
+		SELECT * FROM VIEW_EQP_CHECK_HISTORY_SHEET WHERE EQP_SN=@eqpSn AND check_date between @sDate AND @eDate ORDER BY check_date desc
+		#addPaging ;
+	</selectEqpCheckHist>
+	<selectEqpCheckHistTotal>
+		SELECT count(*) AS TOTAL_SIZE FROM VIEW_EQP_CHECK_HISTORY_SHEET WHERE EQP_SN=@eqpSn AND check_date between @sDate AND @eDate;
+	</selectEqpCheckHistTotal>
+	<selectWrsWorkHist>
+		SELECT * FROM view_wrs_working_list WHERE wrs_rec_time BETWEEN @sDate AND @eDate #addWhere ORDER BY wrs_req_day desc 
+		#addPaging ;
+	</selectWrsWorkHist>
+	<selectWrsWorkHistTotal>
+		SELECT COUNT(*) AS TOTAL_SIZE FROM view_wrs_working_list WHERE wrs_rec_time BETWEEN @sDate AND @eDate #addWhere ;
+	</selectWrsWorkHistTotal>
+	<selectWrsAccountList>
+		SELECT * FROM VIEW_WRS_ACCOUNT_NON_CODE_LIST #addWhere;
+	</selectWrsAccountList>
+	<selecOTconfirmListTotal>
+		SELECT COUNT(*) AS TOTAL_SIZE FROM view_user_ot_mgr_list WHERE year(REQ_DATE)=@year AND month(REQ_DATE)=@month AND req_status in (0, 1);
+	</selecOTconfirmListTotal>
+	<selecOTconfirmList>
+		SELECT * FROM view_user_ot_mgr_list WHERE year(REQ_DATE)=@year AND month(REQ_DATE)=@month AND req_status in (0, 1) ORDER BY req_date desc
+		OFFSET (@pageNo-1)*@pageSize ROWS FETCH NEXT @pageSize ROWS ONLY;
+	</selecOTconfirmList>
+	<selecViolationListTotal>
+		SELECT COUNT(*) AS TOTAL_SIZE FROM view_env_violation_list WHERE violation_date BETWEEN @sDate AND @eDate #addWhere;
+	</selecViolationListTotal>
+	<selecViolationList>
+		SELECT * FROM view_env_violation_list WHERE violation_date BETWEEN @sDate AND @eDate #addWhere ORDER BY violation_date desc
+		OFFSET (@pageNo-1)*@pageSize ROWS FETCH NEXT @pageSize ROWS ONLY;
+	</selecViolationList>
+	<selectIrrationListTotal>
+		SELECT COUNT(*) AS TOTAL_SIZE FROM view_env_irration_list WHERE irration_date BETWEEN @sDate AND @eDate #addWhere;
+	</selectIrrationListTotal>
+	<selectIrrationList>
+		SELECT * FROM view_env_irration_list WHERE irration_date BETWEEN @sDate AND @eDate #addWhere ORDER BY irration_date desc
+		OFFSET (@pageNo-1)*@pageSize ROWS FETCH NEXT @pageSize ROWS ONLY;
+	</selectIrrationList>
+	<selectHolidayList>
+		SELECT * FROM company_holiday_plan_mgr_tbl WHERE current_year in (@bYear, @cYear) ORDER BY current_year, company_holiday ASC
+	</selectHolidayList>
+	<selectScrEqpDetail>
+		SELECT * FROM EQP_SCR_MGR_TBL WHERE eqp_sn=@eqpSn
+	</selectScrEqpDetail>
+	<selectEqpList>
+		SELECT *, concat(scr_eqp_id, ' (', eqp_sn, ')') as VIEW_EQP FROM VIEW_EQP_SCR_MGR_LIST #addWhere ORDER BY eqp_sn #addPaging ;
+	</selectEqpList>
+	<selectEqpListTotal>
+		SELECT COUNT(*) AS TOTAL_SIZE FROM VIEW_EQP_SCR_MGR_LIST #addWhere ;
+	</selectEqpListTotal>
+	<selectEqpStatusList>
+		SELECT * FROM VIEW_EQP_SCR_STATUS #addWhere ORDER BY eqp_sn #addPaging ;
+	</selectEqpStatusList>
+	<selectEqpStatusListTotal>
+		SELECT COUNT(*) AS TOTAL_SIZE FROM VIEW_EQP_SCR_STATUS #addWhere ;
+	</selectEqpStatusListTotal>
+</query>
